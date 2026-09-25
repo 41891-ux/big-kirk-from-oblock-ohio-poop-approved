@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #050505;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace, sans-serif;
+}
+
+#game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #111116 0%, #000000 100%);
+}
+
+#game-canvas {
+  display: block;
+  /* Proporção arcade original: 224 de largura por 256 de altura */
+  aspect-ratio: 224 / 256;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  background-color: #000000;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 10px rgba(30, 255, 30, 0.08);
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Controles de toque na tela (para mobile / tablets) */
+.touch-overlay {
+  display: none;
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  padding: 0 20px;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@media (pointer: coarse) {
+  .touch-overlay {
+    display: flex;
+  }
+}
+
+.touch-dpad, .touch-actions {
+  display: flex;
+  gap: 14px;
+  pointer-events: auto;
+}
+
+.touch-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  touch-action: manipulation;
+  transition: background 0.1s, transform 0.1s;
+}
+
+.touch-btn:active {
+  background: rgba(30, 255, 30, 0.4);
+  transform: scale(0.92);
+}
+
+.touch-btn-special {
+  border-color: #00f0ff;
+  color: #00f0ff;
+}
+
+.touch-btn-special:active {
+  background: rgba(0, 240, 255, 0.5);
+}
+
+.touch-btn-fire {
+  border-color: #ff3333;
+  color: #ff3333;
+}
+
+.touch-btn-fire:active {
+  background: rgba(255, 51, 51, 0.5);
+}
